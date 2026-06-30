@@ -1,4 +1,4 @@
-# 📊 Business Management System
+# 📊 BMS (Business Management System)
 
 A modern, lightweight, and scalable **Business Management System** that consolidates essential business operations into one platform. The application is built using **Next.js App Router**, **TypeScript**, **Prisma ORM**, **Tailwind CSS**, and **SQLite**, providing a fast, secure, and responsive administrative experience.
 
