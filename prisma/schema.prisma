@@ -1,0 +1,86 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Employee {
+  id          String       @id @default(uuid())
+  firstName   String
+  lastName    String
+  email       String       @unique
+  phone       String
+  role        String       @default("STAFF") // ADMIN, MANAGER, STAFF
+  department  String
+  hireDate    DateTime     @default(now())
+  salary      Float
+  status      String       @default("ACTIVE") // ACTIVE, INACTIVE
+  attendance  Attendance[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Attendance {
+  id         String    @id @default(uuid())
+  employeeId String
+  employee   Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+  date       DateTime  @default(now())
+  checkIn    DateTime  @default(now())
+  checkOut   DateTime?
+  status     String    @default("PRESENT") // PRESENT, ABSENT, LATE
+}
+
+model ClientVendor {
+  id          String             @id @default(uuid())
+  name        String
+  type        String             // CLIENT or VENDOR
+  email       String?
+  phone       String?
+  address     String?
+  companyName String?
+  taxId       String?
+  transactions FinanceTransaction[]
+  inventory    InventoryItem[]
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+}
+
+model Contact {
+  id        String   @id @default(uuid())
+  name      String
+  phone     String
+  email     String?
+  company   String?
+  category  String   // Lead, Partner, Customer, Personal
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model InventoryItem {
+  id          String        @id @default(uuid())
+  sku         String        @unique
+  name        String
+  description String?
+  quantity    Int           @default(0)
+  unitPrice   Float
+  vendorId    String?
+  vendor      ClientVendor? @relation(fields: [vendorId], references: [id], onDelete: SetNull)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+model FinanceTransaction {
+  id             String        @id @default(uuid())
+  type           String        // INCOME or EXPENSE
+  amount         Float
+  category       String        // Sales, Salary, Purchase, Utilities
+  date           DateTime      @default(now())
+  description    String?
+  clientVendorId String?
+  clientVendor   ClientVendor? @relation(fields: [clientVendorId], references: [id], onDelete: SetNull)
+  createdAt      DateTime      @default(now())
+}
