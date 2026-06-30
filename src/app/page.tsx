@@ -46,7 +46,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2 font-bold text-slate-900 tracking-tight">
             <span className="text-xl">💼</span>
-            <span>Business Management Portal</span>
+            <span>BUSINESS MANAGEMENT PORTAL</span>
           </div>
           <div>
             <Link
