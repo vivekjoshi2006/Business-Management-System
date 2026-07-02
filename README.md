@@ -5,7 +5,7 @@ A modern, lightweight, and scalable **Business Management System** that consolid
 ---
 
 ## ✨ Features
-
+c
 - 📦 Inventory Management
 - 👥 Employee Management
 - 💰 Finance Management
@@ -303,7 +303,7 @@ Every POST and PUT request validates:
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/vivekjoshi2006/Business-Management-System.git
+git clone https://github.com/vivekjoshi2006/BMS-Pro.git
 ```
 
 ```bash
